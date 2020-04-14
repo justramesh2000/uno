@@ -296,9 +296,30 @@ function play(players,playerName, cardplayed)
 
 }
 
+function nextPlayer()
+{
+
+}
+
 function reset()
 {
-    cards = ['80px-USM_Blue_0 copy.png',
+    cards = ['80px-USM_Yellow_Skip copy.png',
+'80px-USM_Yellow_Skip.png',
+'80px-USM_Blue_Skip copy.png',
+'80px-USM_Blue_Skip.png',
+'80px-USM_Green_Skip.png',
+'80px-USM_Green_Skip copy.png',
+'80px-USM_Red_Skip copy.png',
+'80px-USM_Red_Skip.png',
+'80px-USM_Yellow_Reverse copy.png',
+'80px-USM_Yellow_Reverse.png',
+'80px-USM_Red_Reverse copy.png',
+'80px-USM_Red_Reverse.png',
+'80px-USM_Green_Reverse copy.png',
+'80px-USM_Green_Reverse.png',
+'80px-USM_Blue_Reverse copy.png',
+'80px-USM_Blue_Reverse.png',
+'80px-USM_Blue_0 copy.png',
 '80px-USM_Blue_0.png',
 '80px-USM_Blue_1 copy.png',
 '80px-USM_Blue_1.png',
@@ -320,10 +341,6 @@ function reset()
 '80px-USM_Blue_9.png',
 '80px-USM_Blue_Draw copy.png',
 '80px-USM_Blue_Draw.png',
-'80px-USM_Blue_Reverse copy.png',
-'80px-USM_Blue_Reverse.png',
-'80px-USM_Blue_Skip copy.png',
-'80px-USM_Blue_Skip.png',
 '80px-USM_Green_0 copy.png',
 '80px-USM_Green_0.png',
 '80px-USM_Green_1 copy.png',
@@ -346,10 +363,6 @@ function reset()
 '80px-USM_Green_9.png',
 '80px-USM_Green_Draw copy.png',
 '80px-USM_Green_Draw.png',
-'80px-USM_Green_Reverse copy.png',
-'80px-USM_Green_Reverse.png',
-'80px-USM_Green_Skip copy.png',
-'80px-USM_Green_Skip.png',
 '80px-USM_Invincible copy 2.png',
 '80px-USM_Invincible copy 3.png',
 '80px-USM_Invincible copy.png',
@@ -372,10 +385,6 @@ function reset()
 '80px-USM_Red_9.png',
 '80px-USM_Red_Draw copy.png',
 '80px-USM_Red_Draw.png',
-'80px-USM_Red_Reverse copy.png',
-'80px-USM_Red_Reverse.png',
-'80px-USM_Red_Skip copy.png',
-'80px-USM_Red_Skip.png',
 '80px-USM_Wild copy 2.png',
 '80px-USM_Wild copy 3.png',
 '80px-USM_Wild copy.png',
@@ -406,10 +415,6 @@ function reset()
 '80px-USM_Yellow_9.png',
 '80px-USM_Yellow_Draw copy.png',
 '80px-USM_Yellow_Draw.png',
-'80px-USM_Yellow_Reverse copy.png',
-'80px-USM_Yellow_Reverse.png',
-'80px-USM_Yellow_Skip copy.png',
-'80px-USM_Yellow_Skip.png',
 'Red0 copy.png',
 'Red0.png',
 'Red1 copy.png',

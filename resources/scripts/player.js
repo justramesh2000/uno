@@ -70,8 +70,9 @@
 	{
 		if(playerTurn)
 		{
-			socket.emit('play', playerName.value,cardPlayed);
+			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn
 		}
+		socket.emit('play', playerName.value,cardPlayed);
 	}
 
 
@@ -192,8 +193,9 @@
 	{
 		if(playerTurn)
 		{
-			socket.emit('getFromDeck', playerName.value);	
+			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn	
 		}
+		socket.emit('getFromDeck', playerName.value);
 		
 	}
 

@@ -9,6 +9,7 @@
     var btnAddme = document.getElementById('btnAddMe');
     var player ;
     var players  = {} ;
+    var playerTurn = false;
 
    
    chatContainer.style.visibility = "hidden" ;
@@ -22,6 +23,7 @@
    		for(var i in players){
    			if (players[i].name == playerName.value)
    			{
+   				playerTurn = players[i].playerTurn ;
    				player = players[i];
    				if (player.cards!= null && player.cards.length >0) {
 				for (var j in  player.cards)
@@ -56,7 +58,10 @@
 
 	function playerplayed(cardPlayed)
 	{
-		socket.emit('play', playerName.value,cardPlayed);
+		if(playerTurn)
+		{
+			socket.emit('play', playerName.value,cardPlayed);
+		}
 	}
 
 
@@ -71,6 +76,7 @@
 		for(var i in players){
    			if (players[i].name == playerName.value)
    			{
+   				playerTurn = players[i].playerTurn ;
    				player = players[i];
    				if (player.cards!= null && player.cards.length >0) {
    				for (var j in  player.cards)
@@ -174,7 +180,11 @@
 
 	function getFromDeck()
 	{
-		socket.emit('getFromDeck', playerName.value);
+		if(playerTurn)
+		{
+			socket.emit('getFromDeck', playerName.value);	
+		}
+		
 	}
 
 

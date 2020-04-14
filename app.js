@@ -139,18 +139,17 @@ cards = ['80px-USM_Blue_0 copy.png',
 ];
 
 let playerId = 1;
+let playerturnId = 1;
 
 var io = require('socket.io')(server);
 io.sockets.on('connection', function(socket){
-        //players = []; 
-        //playerId = 1;     
         console.log('Connected');
         socket.on('playerRegister',function(data){
         	SOCKET_LIST[playerId] = socket;
 
             if(!(data== null))
             {
-                players[playerId] = {id: playerId, name: data, cardCount:0, score:0, cards:[]}; 
+                players[playerId] = {id: playerId, name: data, cardCount:0, score:0, cards:[], playerTurn: false}; 
                 console.log('added :' + players[playerId].name);        
             }
         
@@ -203,7 +202,10 @@ function distribute(cards, players)
 	players = players.filter(function (el) {
   			return el != null;
 			});
-	
+    //set first player to play 
+    players[0].playerTurn = true;
+	playerturnId = 1 ;
+    console.log(playerturnId + ": Player turn");
     for (var i = 0; i < 7; i++)
     {
         for(var j=0; j < players.length ;j++)
@@ -217,25 +219,37 @@ function distribute(cards, players)
 
 function giveFromDeck(cards, players, playerName)
 {
+    players = players.filter(function (el) {
+            return el != null;
+            });
     if(playerName === "Dealer")
     {
         playedCards.push(cards.shift());
+        playerturnId = 0 ;
+        players[0].playerTurn = true;
     }
     else
     {
-        players = players.filter(function (el) {
-            return el != null;
-            });
-        players.find(play =>
+        var thisPlayer = players.find(play =>
         {
             return play.name === playerName ;
-        }).cards.push(cards.shift()) ;
+        }) ;
+        
+        thisPlayer.cards.push(cards.shift()) ;
 
-        players.find(play =>
+        thisPlayer.cardCount +=1 ;
+        thisPlayer.playerTurn = false;
+        playerturnId +=1;
+        if(playerturnId < players.length)
         {
-            return play.name === playerName ;
-        }).cardCount +=1 ;
-
+            players[playerturnId].playerTurn = true;    
+        }
+        else
+        {
+          playerturnId = 0;  
+          players[playerturnId].playerTurn = true; 
+        }
+        
     }
     
 }
@@ -257,7 +271,7 @@ function play(players,playerName, cardplayed)
        var thisPlayer =  players.find(play =>
         {
             return play.name === playerName ;
-        })
+        });
 
         var index = thisPlayer.cards.indexOf(cardplayed);
         if (index !== -1) thisPlayer.cards.splice(index, 1);
@@ -266,9 +280,18 @@ function play(players,playerName, cardplayed)
         {
             cards.push(playedCards.shift());  
         }
-        thisPlayer.cardCount-=1; 
-        console.log("played cards are");
-        console.log(playedCards);       
+        thisPlayer.cardCount-=1;
+        thisPlayer.playerTurn = false;
+        playerturnId +=1;
+        if(playerturnId < players.length)
+        {
+            players[playerturnId].playerTurn = true;    
+        }
+        else
+        {
+          playerturnId = 0;  
+          players[playerturnId].playerTurn = true; 
+        }
     }
 
 }
@@ -392,7 +415,9 @@ function reset()
 'Red1 copy.jpg',
 'Red1.jpg'
 ];
+
     playedCards = [];
+    playerturnId = 1;
     console.log("cards have been reset");
 }
 

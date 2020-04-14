@@ -1,0 +1,109 @@
+.btn{
+    background:#2ecc71;
+    height:30px;
+    color:white;
+    border-radius:4px;
+}
+.btn:hover{
+    background:#2CC06B;
+}
+
+
+.unoDeckPlayerimg {
+    
+    width:200px;
+    height:200px;
+    display:inline-block;
+    margin-left:80%;
+}
+
+
+.playerArea {
+    
+    background:white;
+    width:70%;
+    height:100%;
+    border-radius:6px;
+    float:right;
+    margin: 5% 3% 1% 1%;
+    padding: 10px;
+    text-align:center;
+    box-shadow: 5px 5px 10px #888888;
+    position:relative;
+}
+
+.playedCardImage{
+    width:10%;
+    height:10%;
+    display:inline-block;
+}
+
+.playerCardImage{
+    width:10%;
+    height:10%;
+    display:inline-block;
+}
+
+.playercardArea {
+    width: 60%;
+    margin-top: 30%;
+}
+
+.playedCardArea
+{
+  width: 60%;
+  margin-bottom: 30%;  
+}
+
+
+.ButtonBar {
+
+   width:100%;
+   height:10%;
+   display:block;
+   bottom:2%;
+   left:0;
+   position:absolute;
+    
+}
+
+.chatContainer{
+    background:white;
+    width:20%;
+    height:100%;
+    border-radius:6px;
+    float:left;
+    margin: 5% 1% 1% 3%;
+    padding: 10px;
+    text-align:center;
+    box-shadow: 5px 5px 10px #888888;
+}
+
+.chatBox {
+    background:#f4f4f4;
+    border-radius:5px;
+    width:90%;
+    height:35%;
+    margin:3% auto 3% auto;
+    border:1px solid;
+    border-color:#f4f4f4;
+    overflow-y:scroll;
+}
+
+.playersListBox {
+    background:#f4f4f4;
+    border-radius:5px;
+    width:90%;
+    height:35%;
+    margin:3% auto 3% auto;
+    border:1px solid;
+    border-color:#f4f4f4;
+    overflow-y:scroll;
+}
+.chatCell {
+    background:white;
+    width:100%;
+    height:15%;
+    font-size: 12;
+    margin:auto auto 1px auto;
+}

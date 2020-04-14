@@ -4,7 +4,7 @@
   "description": "uno game for friends",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Divya Sharma",
   "license": "ISC",

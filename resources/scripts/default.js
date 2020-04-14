@@ -54,15 +54,14 @@
         socket.emit('getFromDeck', 'Dealer');
     });
 
+    const btnRestartGame = document.getElementById('btnRestartGame');
+    btnRestartGame.addEventListener('click', function(e) {
+      e.preventDefault();
+        socket.emit('restartGame');
+    });
+
 	socket.on('getcards',function(data,index){
         console.log('players are getting cards');
         console.log(data);
               
     });
-/*
-    function getFromDeck()
-    {
-        socket.emit('getFromDeck', "Dealer");
-    }
-    */
-

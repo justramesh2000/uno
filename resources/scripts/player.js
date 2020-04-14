@@ -15,10 +15,16 @@
    chatContainer.style.visibility = "hidden" ;
 
    socket.on('getcards',function(data,playedCards){
+
 	data = data.filter(function (el) {
   			return el != null;
 			});
    		players = data;
+   		console.log(players.length);
+   		if(players.length==0)
+   		{
+   			document.getElementById('playerCard').innerHTML= "";	
+   		}
    		displayPlayers(players);
    		for(var i in players){
    			if (players[i].name == playerName.value)
@@ -54,6 +60,10 @@
            		document.getElementById('playedCard').innerHTML= "";
 		   }
    		
+   	});
+
+   	socket.on('restartingGame',function(){
+   		location.reload();
    	});
 
 	function playerplayed(cardPlayed)

@@ -132,10 +132,10 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Yellow_Reverse.png',
 '80px-USM_Yellow_Skip copy.png',
 '80px-USM_Yellow_Skip.png',
-'Red0 copy.jpg',
-'Red0.jpg',
-'Red1 copy.jpg',
-'Red1.jpg'
+'Red0 copy.png',
+'Red0.png',
+'Red1 copy.png',
+'Red1.png'
 ];
 
 let playerId = 1;
@@ -410,10 +410,10 @@ function reset()
 '80px-USM_Yellow_Reverse.png',
 '80px-USM_Yellow_Skip copy.png',
 '80px-USM_Yellow_Skip.png',
-'Red0 copy.jpg',
-'Red0.jpg',
-'Red1 copy.jpg',
-'Red1.jpg'
+'Red0 copy.png',
+'Red0.png',
+'Red1 copy.png',
+'Red1.png'
 ];
 
     playedCards = [];
@@ -461,6 +461,25 @@ socket.on('shuffleCards',function(data){
             	console.log('resetting players card');
             	players.cards = [];
             	SOCKET_LIST[i].emit('getcards',players);
+          }
+          
+        });
+
+
+ socket.on('restartGame',function(data){
+        
+            console.log('Game is restarting');
+            reset()
+            players = [];
+            playerId = 1;
+            playerturnId = 1;
+            for(var i in SOCKET_LIST){
+            SOCKET_LIST[i].emit('addToChat', "Dealer has restarted the game!");
+            }
+            
+            for(var i in SOCKET_LIST){
+                players.cards = [];
+                SOCKET_LIST[i].emit('restartingGame');
           }
           
         });

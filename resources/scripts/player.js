@@ -205,11 +205,11 @@
 	const buttonUno = document.getElementById('btnUno');
 	buttonUno.addEventListener('click', function(e) {
 	  	e.preventDefault();
-		socket.emit('sendMsgToServer', playerName.value +' : said Uno @' + new Date());
+		socket.emit('sendMsgToServer', playerName.value +' : said Uno');
 	});
 
 	const buttonCheck = document.getElementById('btnCheck');
 	buttonCheck.addEventListener('click', function(e) {
 	  	e.preventDefault();
-		socket.emit('sendMsgToServer', playerName.value +' : said Check @' + new Date());
+		socket.emit('sendMsgToServer', playerName.value +' : said Check');
 	});

@@ -20,7 +20,7 @@
   			return el != null;
 			});
    		players = data;
-   		console.log(players.length);
+   		//console.log(players.length);
    		if(players.length==0)
    		{
    			document.getElementById('playerCard').innerHTML= "";	
@@ -139,7 +139,7 @@
 //add a chat cell to our chat list view, and scroll to the bottom
     socket.on('addToChat',function(data){
               
-        console.log('got a chat message');
+        //console.log('got a chat message');
         chatText.innerHTML += '<div class="chatCell">' + data + '</div>';
         chatText.scrollTop = chatText.scrollHeight;
               
@@ -177,8 +177,8 @@
 	}
 
 	function displayPlayers(item) {
-		console.log("display players");
-		console.log(item);
+		//console.log("display players");
+		//console.log(item);
 		playerlist.innerHTML = "";
 		for(var index in item){
 

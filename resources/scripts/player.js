@@ -149,7 +149,7 @@
         e.preventDefault();
        
         //call sendMsgToServer socket function, with form text value as argument
-        socket.emit('sendMsgToServer', playerName.value +' : ' +chatInput.value + '@' + new Date());
+        socket.emit('sendMsgToServer', playerName.value +' : ' +chatInput.value);
         chatInput.value = "";
 	}
 

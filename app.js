@@ -174,27 +174,11 @@ io.sockets.on('connection', function(socket){
  
  });
  
- app.post('/shuffle/clicked', (req, res) => {
- 	shuffle(cards);
- 	console.log("cards have been shuffled");
- 	res.sendStatus(200);
- });
-
  
- app.post('/uno/clicked', (req, res) => {
- 	console.log("Uno was clicked");
- 	res.sendStatus(200);
- });
-
- app.post('/check/clicked', (req, res) => {
- 	console.log("Check was clicked");
- 	res.sendStatus(200);
- });
-
 function shuffle(array){
-	console.log(array);
+	//console.log(array);
 array.sort(() => Math.random() - 0.5);
-console.log(array);
+//console.log(array);
 }
 
 function distribute(cards, players)
@@ -205,7 +189,7 @@ function distribute(cards, players)
     //set first player to play 
     players[0].playerTurn = true;
 	playerturnId = 1 ;
-    console.log(playerturnId + ": Player turn");
+   // console.log(playerturnId + ": Player turn");
     for (var i = 0; i < 7; i++)
     {
         for(var j=0; j < players.length ;j++)
@@ -214,7 +198,7 @@ function distribute(cards, players)
             players[j].cardCount+=1;
         }
     }
-    console.log("cards distributed");
+    //console.log("cards distributed");
 }
 
 function giveFromDeck(cards, players, playerName)
@@ -266,7 +250,7 @@ function play(players,playerName, cardplayed)
             return el != null;
             });
 
-        console.log("card played is:" + cardplayed);
+        //console.log("card played is:" + cardplayed);
 
        var thisPlayer =  players.find(play =>
         {
@@ -423,13 +407,13 @@ function reset()
 
     playedCards = [];
     playerturnId = 1;
-    console.log("cards have been reset");
+    //console.log("cards have been reset");
 }
 
 socket.on('shuffleCards',function(data){
         
             shuffle(cards);
-            console.log('cards have been shuffled!');
+            //console.log('cards have been shuffled!');
             for(var i in SOCKET_LIST){
             SOCKET_LIST[i].emit('addToChat', "Dealer has shuffled the cards!");
           	}
@@ -439,11 +423,11 @@ socket.on('shuffleCards',function(data){
 
  socket.on('distributeCards',function(data){
         
-            console.log('players are getting cards!');
+            //console.log('players are getting cards!');
             distribute(cards,players);
             for(var i in SOCKET_LIST){
-                console.log('sending players with cards');
-                console.log(players);
+               // console.log('sending players with cards');
+                //console.log(players);
                 SOCKET_LIST[i].emit('getcards',players);
             }
           
@@ -451,7 +435,7 @@ socket.on('shuffleCards',function(data){
 
  socket.on('resetCards',function(data){
         
-			console.log('cards are being reset');
+			//console.log('cards are being reset');
             reset()
             for(var i in SOCKET_LIST){
             SOCKET_LIST[i].emit('addToChat', "Dealer has reset the cards!");
@@ -460,10 +444,10 @@ socket.on('shuffleCards',function(data){
   			return el != null;
 			});
 			players.forEach(pla => { pla.cards = [] ; pla.cardCount = 0;});
-			console.log(players);
+			//console.log(players);
           	
           	for(var i in SOCKET_LIST){
-            	console.log('resetting players card');
+            	//console.log('resetting players card');
             	players.cards = [];
             	SOCKET_LIST[i].emit('getcards',players);
           }
@@ -473,7 +457,7 @@ socket.on('shuffleCards',function(data){
 
  socket.on('restartGame',function(data){
         
-            console.log('Game is restarting');
+            //console.log('Game is restarting');
             reset()
             players = [];
             playerId = 1;
@@ -490,22 +474,22 @@ socket.on('shuffleCards',function(data){
         });
 
  socket.on('getFromDeck',function(data){
-        console.log('sending one card to requested player');
+        //console.log('sending one card to requested player');
         giveFromDeck(cards,players,data);
         for(var i in SOCKET_LIST){
-                console.log('sending players with cards');
-                console.log(players);
+                //console.log('sending players with cards');
+                //console.log(players);
                 SOCKET_LIST[i].emit('getcards',players,playedCards);
                 SOCKET_LIST[i].emit('played',players,playedCards);
             }
     });
 
  socket.on('play',function(playerName,cardPlayed){
-    console.log(playerName + ' Played ' + cardPlayed + 'card');
+    //console.log(playerName + ' Played ' + cardPlayed + 'card');
     play(players,playerName,cardPlayed);
     for(var i in SOCKET_LIST){
-                console.log('playing the card');
-                console.log(players);
+                //console.log('playing the card');
+                //console.log(players);
                 SOCKET_LIST[i].emit('played',players,playedCards);
             }
 

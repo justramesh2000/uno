@@ -7,7 +7,8 @@ body{
 }
 .divMain{
   width: 100vw;
-  height:100vh;
+  height:90vh;
+  text-align: center;
 }
 .divPlayerDetail{
   width: 100%;
@@ -47,10 +48,11 @@ body{
     background:#2CC06B;
 }
 .welcomeUno{
-  width: 100%;
-  height: 90%;
+  height:70vh;
+  width: 50vw;
   position: fixed;
-  bottom:0;
+  left:25vw;
+  top:15vh;
 }
 .divPlayerArea{
   width:70%;
@@ -218,5 +220,11 @@ body{
 @media screen and (max-width: 800px) {
   .buttonBar{
     margin-top: 10%;
+  }
+  .welcomeUno{
+    width: 80vw;
+    height: auto;
+    left: 10vw;
+    top:20vh;
   }
 }

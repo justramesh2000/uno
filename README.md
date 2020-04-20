@@ -20,5 +20,4 @@ Features:
 5. Restart Game - This is to completely restart a new game, players will have to register again, this can be used if a player wants to be removed.
 
 wip - There are some ui works in progress. Divya Sharma is working on them.
-Divya - Cleaned up ui for player's page
 

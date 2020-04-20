@@ -165,7 +165,7 @@
 					welcomeUno.style.visibility="hidden";
 					playerForm.style.visibility="hidden";
 					divWelcomePlayer.style.visibility="visible";
-					divWelcomePlayer.innerHTML = player.name+divWelcomePlayer.innerHTML;
+					divWelcomePlayer.innerHTML = playerName.value+divWelcomePlayer.innerHTML;
         	playerName.readOnly = true;
         	chatContainer.style.visibility = "visible" ;
 					playerArea.style.visibility="visible";

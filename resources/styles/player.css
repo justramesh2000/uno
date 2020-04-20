@@ -7,7 +7,7 @@ body{
 }
 .divMain{
   width: 100vw;
-  height:90vh;
+  height:100vh;
   text-align: center;
 }
 .divPlayerDetail{
@@ -181,7 +181,10 @@ body{
 }
 
 @media screen and (max-width: 700px) {
-    .txtPlayerName{
+  .divMain{
+    height: 80vh;
+  }
+  .txtPlayerName{
     font-size: 12px;
   }
   .btn{

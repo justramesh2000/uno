@@ -7,12 +7,14 @@
     var chatContainer = document.getElementById('chatContainer');
     var playerlist = document.getElementById('playersBox');
     var btnAddme = document.getElementById('btnAddMe');
+		var playerArea=document.getElementById('divPlayerArea');
     var player ;
     var players  = {} ;
     var playerTurn = false;
 
-   
+
    chatContainer.style.visibility = "hidden" ;
+	 playerArea.style.visibility="hidden";
 
    socket.on('getcards',function(data,playedCards){
 
@@ -23,7 +25,7 @@
    		//console.log(players.length);
    		if(players.length==0)
    		{
-   			document.getElementById('playerCard').innerHTML= "";	
+   			document.getElementById('playerCard').innerHTML= "";
    		}
    		displayPlayers(players);
    		for(var i in players){
@@ -52,14 +54,14 @@
 					document.getElementById('playerCard').innerHTML= "";
 				}
    			}
-            
+
            }
 
            if(playedCards==null || playedCards.length==0)
            {
            		document.getElementById('playedCard').innerHTML= "";
 		   }
-   		
+
    	});
 
    	socket.on('restartingGame',function(){
@@ -110,7 +112,7 @@
 					document.getElementById('playerCard').innerHTML= "";
 				}
    			}
-            
+
            }
 
            //set played card area
@@ -121,7 +123,7 @@
 						var elem = document.createElement("img");
 						elem.setAttribute("src", "./images/"+  playedCards[j]);
 						elem.setAttribute("id",tempId);
-						elem.setAttribute("class", "playerCardImage");
+						elem.setAttribute("class", "playedCardImage");
 						elem.setAttribute("onclick", "playerplayed(" +'"'+ playedCards[j]+'"'+")");
 
 						if(document.getElementById(tempId) == null)
@@ -131,43 +133,48 @@
 					}
 				}
 
-		
-	});
-   	
 
-   
+	});
+
+
+
 //add a chat cell to our chat list view, and scroll to the bottom
     socket.on('addToChat',function(data){
-              
+
         //console.log('got a chat message');
         chatText.innerHTML += '<div class="chatCell">' + data + '</div>';
         chatText.scrollTop = chatText.scrollHeight;
-              
+
     });
 		chatForm.onsubmit = function(e){
         //prevent the form from refreshing the page
         e.preventDefault();
-       
+
         //call sendMsgToServer socket function, with form text value as argument
         socket.emit('sendMsgToServer', playerName.value +' : ' +chatInput.value);
         chatInput.value = "";
 	}
 
 	socket.on('addToPlayer',function(data,index){
-              
+
         players = data;
         player = data[index];
         if(player!=null)
         {
         	btnAddme.style.visibility = "hidden";
+					welcomeUno.style.visibility="hidden";
+					playerForm.style.visibility="hidden";
+					divWelcomePlayer.style.visibility="visible";
+					divWelcomePlayer.innerHTML = player.name+divWelcomePlayer.innerHTML;
         	playerName.readOnly = true;
         	chatContainer.style.visibility = "visible" ;
+					playerArea.style.visibility="visible";
         	var filtered = players.filter(function (el) {
   			return el != null;
 			});
 			displayPlayers(filtered);
         }
-              
+
     });
 
 	playerForm.onsubmit = function(e){
@@ -182,25 +189,25 @@
 		playerlist.innerHTML = "";
 		for(var index in item){
 
-            playerlist.innerHTML += item[index].id + ":" + item[index].name + "," + "cards :" + item[index].cardCount +"<br>"; 
+            playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
             }
-  		
+
 	}
 
-	
+
 
 	function getFromDeck()
 	{
 		if(playerTurn)
 		{
-			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn	
+			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn
 		}
 		socket.emit('getFromDeck', playerName.value);
-		
+
 	}
 
 
-    
+
 
 	const buttonUno = document.getElementById('btnUno');
 	buttonUno.addEventListener('click', function(e) {

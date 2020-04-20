@@ -179,8 +179,13 @@
 
 	playerForm.onsubmit = function(e){
 		e.preventDefault();
-
-		socket.emit('playerRegister',playerName.value);
+		if(playerName.value!=null && playerName.value!='')
+		{
+			socket.emit('playerRegister',playerName.value);
+		}
+		else {
+			alert('Please enter your name');
+				}
 	}
 
 	function displayPlayers(item) {

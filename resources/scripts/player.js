@@ -7,7 +7,9 @@
     var chatContainer = document.getElementById('chatContainer');
     var playerlist = document.getElementById('playersBox');
     var btnAddme = document.getElementById('btnAddMe');
-		var playerArea=document.getElementById('divPlayerArea');
+	var playerArea=document.getElementById('divPlayerArea');
+	var unoAudio = document.getElementById('unoAudio');
+	var checkAudio = document.getElementById('checkAudio');
     var player ;
     var players  = {} ;
     var playerTurn = false;
@@ -41,7 +43,7 @@
 					elem.setAttribute("src", "./images/"+  player.cards[j]);
 					elem.setAttribute("id",tempId);
 					elem.setAttribute("class", "playerCardImage");
-					elem.setAttribute("onclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+					elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
 
 					if(document.getElementById(tempId) == null)
 					{
@@ -99,7 +101,7 @@
 						elem.setAttribute("src", "./images/"+  player.cards[j]);
 						elem.setAttribute("id",tempId);
 						elem.setAttribute("class", "playerCardImage");
-						elem.setAttribute("onclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+						elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
 
 						if(document.getElementById(tempId) == null)
 						{
@@ -124,11 +126,15 @@
 						elem.setAttribute("src", "./images/"+  playedCards[j]);
 						elem.setAttribute("id",tempId);
 						elem.setAttribute("class", "playedCardImage");
-						elem.setAttribute("onclick", "playerplayed(" +'"'+ playedCards[j]+'"'+")");
-
+						//elem.setAttribute("onclick", "playerplayed(" +'"'+ playedCards[j]+'"'+")");
+						//var pElem = document.createElement("p");
+						//var node = document.createTextNode("he played");
+						//pElem.appendChild(node);
+						
 						if(document.getElementById(tempId) == null)
 						{
 							document.getElementById('playedCard').appendChild(elem);
+							//document.getElementById('playedCard').appendChild(pElem);
 						}
 					}
 				}
@@ -142,6 +148,15 @@
     socket.on('addToChat',function(data){
 
         //console.log('got a chat message');
+        if(data.includes("Uno"))
+        {
+        	unoAudio.play();
+        }
+
+        if(data.includes("Check"))
+        {
+        	checkAudio.play();
+        }
         chatText.innerHTML += '<div class="chatCell">' + data + '</div>';
         chatText.scrollTop = chatText.scrollHeight;
 

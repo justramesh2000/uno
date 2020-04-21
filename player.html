@@ -20,7 +20,7 @@
       </div>
       <img id="welcomeUno" class="welcomeUno" src="./images/uno.jpg">
       <div id="divPlayerArea" class="divPlayerArea">
-    		<img id="imgUnoDeck" class="imgDeck" src="./images/unoDeck.png" onclick="getFromDeck()">
+    		<img id="imgUnoDeck" class="imgDeck" src="./images/unoDeck.png" ondblclick="getFromDeck()">
     		<div id="playedCard" class = "divPlayedCardArea"></div>
         <div class="cardHeadings">My Cards</div>
     		<div id="playerCard" class = "divPlayerCardArea"></div>
@@ -42,6 +42,12 @@
     	  </div>
     	</div>
     </div>
+    <audio id="unoAudio">
+      <source src="./Sounds/UnoSound.wav" type="audio/wav">
+  </audio>
+  <audio id="checkAudio">
+      <source src="./Sounds/CheckSound.wav" type="audio/wav">
+  </audio>
   	<script type="text/javascript" src="./scripts/player.js"></script>
   </body>
 </html>

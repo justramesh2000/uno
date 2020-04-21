@@ -9,18 +9,18 @@
 }
 
 .unoDeckDealerimg {
-    
+
     width:500px;
     height:300px;
     display:inline-block;
     margin:3% auto;
-    
+
 }
 
 
 
 .dealerArea {
-    
+
     background:white;
     width:65%;
     height:80%;
@@ -42,7 +42,7 @@
    bottom:2%;
    left:0;
    position:absolute;
-    
+
 }
 
 .chatContainer{

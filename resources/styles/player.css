@@ -101,6 +101,7 @@ body{
     height: 46%;
     margin: 2% 2% 2% 2%;
     display:inline-block;
+    position:relative;
 }
 .buttonBar {
    margin-top: 1%;

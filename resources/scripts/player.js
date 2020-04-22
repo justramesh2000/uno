@@ -290,6 +290,7 @@
 				// find the element that you want to drag.
 				var pImg = document.document.getElementsByClassName("playerCardImage");
 				pImg.addEventListener('touchmove', function(e) {
+					e.preventDefault();
 					var touchLocation = e.targetTouches[0];
 					// assign new coordinates based on the touch.
 				pImg.style.left = touchLocation.pageX + 'px';

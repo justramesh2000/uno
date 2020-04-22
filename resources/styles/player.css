@@ -101,7 +101,6 @@ body{
     height: 46%;
     margin: 2% 2% 2% 2%;
     display:inline-block;
-    touch-action: manipulation;
     position:relative;
 }
 .buttonBar {

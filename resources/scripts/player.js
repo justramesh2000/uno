@@ -278,6 +278,13 @@
 	const buttonUno = document.getElementById('btnUno');
 	buttonUno.addEventListener('click', function(e) {
 	  	e.preventDefault();
+	  	try {
+				unoAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+			
 		socket.emit('sendMsgToServer', playerName.value +' : said Uno');
 	});
 

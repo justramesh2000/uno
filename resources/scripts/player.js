@@ -285,24 +285,3 @@
         targ.style.top=coordY+e.clientY-offsetY+'px';
         return false;
       }
-
-      window.addEventListener('touchstart', function() {
-				// find the element that you want to drag.
-				var pImg = document.document.getElementsByClassName("playerCardImage");
-				pImg.addEventListener('touchmove', function(e) {
-					e.preventDefault();
-					var touchLocation = e.targetTouches[0];
-					// assign new coordinates based on the touch.
-				pImg.style.left = touchLocation.pageX + 'px';
-				pImg.style.top = touchLocation.pageY + 'px';
-				});	
-				
-				pImg.addEventListener('touchend', function(e) {
-				// current img position.
-				var x = parseInt(pImg.style.left);
-				var y = parseInt(pImg.style.top);
-  				});
-			});
-      
-
-     

@@ -284,13 +284,19 @@
 			catch(error) {
 				console.error(error);
 			}
-			
+
 		socket.emit('sendMsgToServer', playerName.value +' : said Uno');
 	});
 
 	const buttonCheck = document.getElementById('btnCheck');
 	buttonCheck.addEventListener('click', function(e) {
 	  	e.preventDefault();
+	  	try {
+				checkAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
 		socket.emit('sendMsgToServer', playerName.value +' : said Check');
 	});
 

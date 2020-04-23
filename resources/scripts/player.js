@@ -45,7 +45,8 @@
 					elem.setAttribute("src", "./images/"+  player.cards[j]);
 					elem.setAttribute("id",tempId);
 					elem.setAttribute("class", "playerCardImage");
-					elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+					//elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+					elem.addEventListener("dblclick", (e) => { playerplayed(e); }, false);
 
 					if(document.getElementById(tempId) == null)
 					{
@@ -72,13 +73,15 @@
    		location.reload();
    	});
 
-	function playerplayed(cardPlayed)
+	function playerplayed(e)
 	{
+		e.preventDefault();
+		
 		if(playerTurn)
 		{
 			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn
 		}
-		socket.emit('play', playerName.value,cardPlayed);
+		socket.emit('play', playerName.value,e.target.id);
 	}
 
 
@@ -103,7 +106,8 @@
 						elem.setAttribute("src", "./images/"+  player.cards[j]);
 						elem.setAttribute("id",tempId);
 						elem.setAttribute("class", "playerCardImage");
-						elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+						//elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
+						elem.addEventListener("dblclick", (e) => { playerplayed(e,player.cards[j]); }, false);
 
 						if(document.getElementById(tempId) == null)
 						{

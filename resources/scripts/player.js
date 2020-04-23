@@ -14,6 +14,8 @@
     var players  = {} ;
     var playerTurn = false;
 
+    document.addEventListener("doubleclick", function(event){
+	event.preventDefault();});
 
    chatContainer.style.visibility = "hidden" ;
 	 playerArea.style.visibility="hidden";
@@ -40,7 +42,7 @@
    				if (player.cards!= null && player.cards.length >0) {
 				for (var j in  player.cards)
 				{
-					var tempId = player.cards[j].replace(".jpg","");
+					var tempId = player.cards[j];
 					var elem = document.createElement("img");
 					elem.setAttribute("src", "./images/"+  player.cards[j]);
 					elem.setAttribute("id",tempId);
@@ -127,7 +129,7 @@
            if (playedCards!= null && playedCards.length >0) {
    				for (var j in  playedCards)
 					{
-						var tempId = playedCards[j].replace(".jpg","");
+						var tempId = playedCards[j];
 						var elem = document.createElement("img");
 						elem.setAttribute("src", "./images/"+  playedCards[j]);
 						elem.setAttribute("id",tempId);

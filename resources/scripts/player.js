@@ -14,8 +14,7 @@
     var players  = {} ;
     var playerTurn = false;
 
-    document.addEventListener("doubleclick", function(event){
-	event.preventDefault();});
+    
 
    chatContainer.style.visibility = "hidden" ;
 	 playerArea.style.visibility="hidden";

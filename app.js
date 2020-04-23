@@ -490,7 +490,7 @@ socket.on('shuffleCards',function(data){
     for(var i in SOCKET_LIST){
                 //console.log('playing the card');
                 //console.log(players);
-                SOCKET_LIST[i].emit('played',players,playedCards);
+                SOCKET_LIST[i].emit('played',players,playedCards,playerName,cardPlayed);
             }
 
     });

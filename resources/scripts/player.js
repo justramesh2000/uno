@@ -86,7 +86,7 @@
 	}
 
 
-	socket.on('played',function(players,playedCards){
+	socket.on('played',function(players,playedCards,lastPlayerName, lastCardPlayed){
 		players = players.filter(function (el) {
   			return el != null;
 			});
@@ -109,7 +109,7 @@
 						elem.setAttribute("class", "playerCardImage");
 						//elem.setAttribute("ondblclick", "playerplayed(" +'"'+ player.cards[j]+'"'+")");
 						elem.addEventListener("dblclick", (e) => { playerplayed(e,player.cards[j]); }, false);
-
+						
 						if(document.getElementById(tempId) == null)
 						{
 							document.getElementById('playerCard').appendChild(elem);
@@ -137,11 +137,31 @@
 						//var pElem = document.createElement("p");
 						//var node = document.createTextNode("he played");
 						//pElem.appendChild(node);
+
+						if(playedCards[j] == lastCardPlayed)
+						{
+							var pElem = document.createElement("p");
+							var node = document.createTextNode(lastPlayerName);
+							pElem.appendChild(node);
+							pElem.setAttribute("class","lastPlayed");
+							pElem.style.right = '9%';
+							pElem.style.top = '40%';
+						}
 						
 						if(document.getElementById(tempId) == null)
 						{
 							document.getElementById('playedCard').appendChild(elem);
-							//document.getElementById('playedCard').appendChild(pElem);
+
+							if(pElem!=null)
+							{
+								console.log(lastPlayerName);
+								console.log(lastCardPlayed);
+								console.log(playedCards[j]);
+								console.log(pElem);
+								document.getElementById('playedCard').appendChild(pElem);	
+							}
+							
+							
 						}
 					}
 				}

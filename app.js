@@ -480,7 +480,7 @@ socket.on('shuffleCards',function(data){
                 //console.log('sending players with cards');
                 //console.log(players);
                 SOCKET_LIST[i].emit('getcards',players,playedCards);
-                SOCKET_LIST[i].emit('played',players,playedCards);
+                SOCKET_LIST[i].emit('played',players,playedCards,data,'noCard');
             }
     });
 

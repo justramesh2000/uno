@@ -77,6 +77,7 @@
 	function playerplayed(e)
 	{
 		e.preventDefault();
+		document.getElementById('drawValue').innerHTML = '';
 		
 		if(playerTurn)
 		{
@@ -154,10 +155,6 @@
 
 							if(pElem!=null)
 							{
-								console.log(lastPlayerName);
-								console.log(lastCardPlayed);
-								console.log(playedCards[j]);
-								console.log(pElem);
 								document.getElementById('playedCard').appendChild(pElem);	
 							}
 							
@@ -166,6 +163,14 @@
 					}
 				}
 
+				if(lastCardPlayed.includes('noCard'))
+				{
+					document.getElementById('drawValue').innerHTML = lastPlayerName + ' drew';
+				}
+				else
+				{
+					document.getElementById('drawValue').innerHTML = '';	
+				}
 
 	});
 
@@ -242,6 +247,7 @@
 			alert('Please enter your name');
 				}
 	}
+
 
 	function displayPlayers(item) {
 		//console.log("display players");

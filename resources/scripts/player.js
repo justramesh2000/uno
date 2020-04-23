@@ -177,12 +177,25 @@
         //console.log('got a chat message');
         if(data.includes("Uno"))
         {
-        	unoAudio.play();
+
+			try {
+				unoAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+        	
         }
 
         if(data.includes("Check"))
         {
-        	checkAudio.play();
+        	try {
+				checkAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+        	
         }
         chatText.innerHTML += '<div class="chatCell">' + data + '</div>';
         chatText.scrollTop = chatText.scrollHeight;

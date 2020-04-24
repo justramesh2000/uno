@@ -10,9 +10,12 @@
 	var playerArea=document.getElementById('divPlayerArea');
 	var unoAudio = document.getElementById('unoAudio');
 	var checkAudio = document.getElementById('checkAudio');
+	var shuffleAudio = document.getElementById('shuffleAudio');
+	var dealAudio = document.getElementById('dealAudio');
     var player ;
     var players  = {} ;
     var playerTurn = false;
+
 
     
 
@@ -27,7 +30,14 @@
   			return el != null;
 			});
    		players = data;
-   		//console.log(players.length);
+   		
+   		try {
+				dealAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+
    		if(players.length==0)
    		{
    			document.getElementById('playerCard').innerHTML= "";
@@ -202,6 +212,20 @@
 			}
         	
         }
+
+
+        if(data.includes("has shuffled the cards"))
+        {
+        	try {
+				shuffleAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+        	
+        }
+
+        
         chatText.innerHTML += '<div class="chatCell">' + data + '</div>';
         chatText.scrollTop = chatText.scrollHeight;
 
@@ -268,6 +292,12 @@
 		{
 			//logic of skip, reverse, play more than one cards has to be figured before implemting player turn
 		}
+		try {
+				dealAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
 		socket.emit('getFromDeck', playerName.value);
 
 	}

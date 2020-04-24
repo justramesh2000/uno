@@ -13,7 +13,7 @@
 	var shuffleAudio = document.getElementById('shuffleAudio');
 	var dealAudio = document.getElementById('dealAudio');
 	var winnerAudio = document.getElementById('winnerAudio');
-    var player ;
+	var player ;
     var players  = {} ;
     var playerTurn = false;
 
@@ -275,12 +275,7 @@
     });
 
     socket.on('reversed',function(reversed){
-    	try {
-				dealAudio.play();
-			}
-			catch(error) {
-				console.error(error);
-			}
+    	
     	document.getElementById('reverseImage').innerHTML = "";
     	if(reversed =='true')
     	{
@@ -289,6 +284,13 @@
 						elem.setAttribute("id","upArrow.jpg");
 						elem.setAttribute("class","reverseImg");
 			document.getElementById('reverseImage').appendChild(elem);
+
+			try {
+				dealAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
     	}
     	else
     	{

@@ -43,7 +43,7 @@
    		{
    			document.getElementById('playerCard').innerHTML= "";
    		}
-   		displayPlayers(players);
+   		displayPlayers(players,[]);
    		for(var i in players){
    			if (players[i].name == playerName.value)
    			{
@@ -98,13 +98,13 @@
 	}
 
 
-	socket.on('played',function(players,playedCards,lastPlayerName, lastCardPlayed){
+	socket.on('played',function(players,playedCards,lastPlayerName, lastCardPlayed, winners){
 		players = players.filter(function (el) {
   			return el != null;
 			});
 		document.getElementById('playedCard').innerHTML= "";
 		document.getElementById('playerCard').innerHTML= "";
-		displayPlayers(players);
+		displayPlayers(players, winners);
 		//again set player card here
 		for(var i in players){
    			if (players[i].name == playerName.value)
@@ -269,7 +269,7 @@
         	var filtered = players.filter(function (el) {
   			return el != null;
 			});
-			displayPlayers(filtered);
+			displayPlayers(filtered,[]);
         }
 
     });
@@ -286,7 +286,7 @@
 	}
 
 
-	function displayPlayers(item) {
+	function displayPlayers(item, winners) {
 		//console.log("display players");
 		//console.log(item);
 		playerlist.innerHTML = "";
@@ -302,19 +302,25 @@
 			}
 		}
 		for(var index in item){
-			    console.log(item[index].cardCount);
-			    console.log(start);
-				if(item[index].cardCount == 0 && start!=true)
+			    if(item[index].cardCount == 0 && start!=true)
 				{
 					someoneWon = true;
-					winner = item[index].name ; 
+					if(!winners.includes(item[index].name))
+					{
+						winner = item[index].name ; 
+					}
+					
 				}
 				playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
             }
 
             if(someoneWon==true)
             {
-            	socket.emit('win', winner);	
+            	if(winner!=null)
+            	{
+            		socket.emit('win', winner);	
+            	}
+            	
             }
             
 	}

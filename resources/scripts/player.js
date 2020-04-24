@@ -12,6 +12,7 @@
 	var checkAudio = document.getElementById('checkAudio');
 	var shuffleAudio = document.getElementById('shuffleAudio');
 	var dealAudio = document.getElementById('dealAudio');
+	var winnerAudio = document.getElementById('winnerAudio');
     var player ;
     var players  = {} ;
     var playerTurn = false;
@@ -214,6 +215,18 @@
         }
 
 
+        if(data.includes("has won"))
+        {
+        	try {
+				winnerAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+        	
+        }
+
+
         if(data.includes("has shuffled the cards"))
         {
         	try {
@@ -277,11 +290,33 @@
 		//console.log("display players");
 		//console.log(item);
 		playerlist.innerHTML = "";
+		var start = true;
+		var winner ;
+		var someoneWon = false;
+		for(var index in item)
+		{
+			if(item[index].cardCount != 0)
+			{
+				//if any player has at least 1 card then this is not start.
+				start = false;
+			}
+		}
 		for(var index in item){
-
-            playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
+			    console.log(item[index].cardCount);
+			    console.log(start);
+				if(item[index].cardCount == 0 && start!=true)
+				{
+					someoneWon = true;
+					winner = item[index].name ; 
+				}
+				playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
             }
 
+            if(someoneWon==true)
+            {
+            	socket.emit('win', winner);	
+            }
+            
 	}
 
 

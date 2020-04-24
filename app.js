@@ -19,6 +19,7 @@ console.log("Server started.");
 SOCKET_LIST = {};
 
 players = [];
+winners = [];
 playedCards = [];
 cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Blue_0.png',
@@ -406,6 +407,7 @@ function reset()
 ];
 
     playedCards = [];
+    winners = [];
     playerturnId = 1;
     //console.log("cards have been reset");
 }
@@ -492,6 +494,17 @@ socket.on('shuffleCards',function(data){
                 //console.log(players);
                 SOCKET_LIST[i].emit('played',players,playedCards,playerName,cardPlayed);
             }
+
+    });
+
+    socket.on('win', function(winnerName){
+        if(!winners.includes(winnerName))
+        {
+            winners.push(winnerName);
+            for(var i in SOCKET_LIST){
+                SOCKET_LIST[i].emit('addToChat',winnerName + ' has won');
+            }            
+        }
 
     });
  

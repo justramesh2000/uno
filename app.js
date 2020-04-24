@@ -21,10 +21,8 @@ SOCKET_LIST = {};
 players = [];
 winners = [];
 playedCards = [];
+reverse = 'false';
 cards = ['80px-USM_Blue_0 copy.png',
-'80px-USM_Blue_0.png',
-'80px-USM_Blue_1 copy.png',
-'80px-USM_Blue_1.png',
 '80px-USM_Blue_2 copy.png',
 '80px-USM_Blue_2.png',
 '80px-USM_Blue_3 copy.png',
@@ -34,6 +32,7 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Blue_5 copy.png',
 '80px-USM_Blue_5.png',
 '80px-USM_Blue_6 copy.png',
+'80px-USM_Yellow_4.png',
 '80px-USM_Blue_6.png',
 '80px-USM_Blue_7 copy.png',
 '80px-USM_Blue_7.png',
@@ -57,6 +56,7 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Green_3.png',
 '80px-USM_Green_4 copy.png',
 '80px-USM_Green_4.png',
+'80px-USM_Blue_0.png',
 '80px-USM_Green_5 copy.png',
 '80px-USM_Green_5.png',
 '80px-USM_Green_6 copy.png',
@@ -78,6 +78,7 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Invincible copy.png',
 '80px-USM_Invincible.png',
 '80px-USM_Red_2 copy.png',
+'80px-USM_Blue_1 copy.png',
 '80px-USM_Red_2.png',
 '80px-USM_Red_3 copy.png',
 '80px-USM_Red_3.png',
@@ -98,6 +99,7 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Red_Reverse copy.png',
 '80px-USM_Red_Reverse.png',
 '80px-USM_Red_Skip copy.png',
+'80px-USM_Yellow_6 copy.png',
 '80px-USM_Red_Skip.png',
 '80px-USM_Wild copy 2.png',
 '80px-USM_Wild copy 3.png',
@@ -116,12 +118,11 @@ cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Yellow_3 copy.png',
 '80px-USM_Yellow_3.png',
 '80px-USM_Yellow_4 copy.png',
-'80px-USM_Yellow_4.png',
 '80px-USM_Yellow_5 copy.png',
 '80px-USM_Yellow_5.png',
-'80px-USM_Yellow_6 copy.png',
 '80px-USM_Yellow_6.png',
 '80px-USM_Yellow_7 copy.png',
+'80px-USM_Blue_1.png',
 '80px-USM_Yellow_7.png',
 '80px-USM_Yellow_8 copy.png',
 '80px-USM_Yellow_8.png',
@@ -178,7 +179,23 @@ io.sockets.on('connection', function(socket){
  
 function shuffle(array){
 	//console.log(array);
-array.sort(() => Math.random() - 0.5);
+//array.sort(() => Math.random() - 0.5);
+var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  //return array;
 //console.log(array);
 }
 
@@ -209,7 +226,21 @@ function giveFromDeck(cards, players, playerName)
             });
     if(playerName === "Dealer")
     {
-        playedCards.push(cards.shift());
+        var tempdealCard = cards.shift() ; 
+        playedCards.push(tempdealCard);
+        
+        if(tempdealCard.includes('Reverse'))
+        {
+            
+            if(reverse == 'false')
+            {
+                reverse ='true';
+            }
+            else
+            {
+                reverse ='false';
+            }
+        }
         playerturnId = 0 ;
         players[0].playerTurn = true;
     }
@@ -288,26 +319,7 @@ function nextPlayer()
 
 function reset()
 {
-    cards = ['80px-USM_Yellow_Skip copy.png',
-'80px-USM_Yellow_Skip.png',
-'80px-USM_Blue_Skip copy.png',
-'80px-USM_Blue_Skip.png',
-'80px-USM_Green_Skip.png',
-'80px-USM_Green_Skip copy.png',
-'80px-USM_Red_Skip copy.png',
-'80px-USM_Red_Skip.png',
-'80px-USM_Yellow_Reverse copy.png',
-'80px-USM_Yellow_Reverse.png',
-'80px-USM_Red_Reverse copy.png',
-'80px-USM_Red_Reverse.png',
-'80px-USM_Green_Reverse copy.png',
-'80px-USM_Green_Reverse.png',
-'80px-USM_Blue_Reverse copy.png',
-'80px-USM_Blue_Reverse.png',
-'80px-USM_Blue_0 copy.png',
-'80px-USM_Blue_0.png',
-'80px-USM_Blue_1 copy.png',
-'80px-USM_Blue_1.png',
+    cards = ['80px-USM_Blue_0 copy.png',
 '80px-USM_Blue_2 copy.png',
 '80px-USM_Blue_2.png',
 '80px-USM_Blue_3 copy.png',
@@ -317,6 +329,7 @@ function reset()
 '80px-USM_Blue_5 copy.png',
 '80px-USM_Blue_5.png',
 '80px-USM_Blue_6 copy.png',
+'80px-USM_Yellow_4.png',
 '80px-USM_Blue_6.png',
 '80px-USM_Blue_7 copy.png',
 '80px-USM_Blue_7.png',
@@ -326,6 +339,10 @@ function reset()
 '80px-USM_Blue_9.png',
 '80px-USM_Blue_Draw copy.png',
 '80px-USM_Blue_Draw.png',
+'80px-USM_Blue_Reverse copy.png',
+'80px-USM_Blue_Reverse.png',
+'80px-USM_Blue_Skip copy.png',
+'80px-USM_Blue_Skip.png',
 '80px-USM_Green_0 copy.png',
 '80px-USM_Green_0.png',
 '80px-USM_Green_1 copy.png',
@@ -336,6 +353,7 @@ function reset()
 '80px-USM_Green_3.png',
 '80px-USM_Green_4 copy.png',
 '80px-USM_Green_4.png',
+'80px-USM_Blue_0.png',
 '80px-USM_Green_5 copy.png',
 '80px-USM_Green_5.png',
 '80px-USM_Green_6 copy.png',
@@ -348,11 +366,16 @@ function reset()
 '80px-USM_Green_9.png',
 '80px-USM_Green_Draw copy.png',
 '80px-USM_Green_Draw.png',
+'80px-USM_Green_Reverse copy.png',
+'80px-USM_Green_Reverse.png',
+'80px-USM_Green_Skip copy.png',
+'80px-USM_Green_Skip.png',
 '80px-USM_Invincible copy 2.png',
 '80px-USM_Invincible copy 3.png',
 '80px-USM_Invincible copy.png',
 '80px-USM_Invincible.png',
 '80px-USM_Red_2 copy.png',
+'80px-USM_Blue_1 copy.png',
 '80px-USM_Red_2.png',
 '80px-USM_Red_3 copy.png',
 '80px-USM_Red_3.png',
@@ -370,6 +393,11 @@ function reset()
 '80px-USM_Red_9.png',
 '80px-USM_Red_Draw copy.png',
 '80px-USM_Red_Draw.png',
+'80px-USM_Red_Reverse copy.png',
+'80px-USM_Red_Reverse.png',
+'80px-USM_Red_Skip copy.png',
+'80px-USM_Yellow_6 copy.png',
+'80px-USM_Red_Skip.png',
 '80px-USM_Wild copy 2.png',
 '80px-USM_Wild copy 3.png',
 '80px-USM_Wild copy.png',
@@ -387,12 +415,11 @@ function reset()
 '80px-USM_Yellow_3 copy.png',
 '80px-USM_Yellow_3.png',
 '80px-USM_Yellow_4 copy.png',
-'80px-USM_Yellow_4.png',
 '80px-USM_Yellow_5 copy.png',
 '80px-USM_Yellow_5.png',
-'80px-USM_Yellow_6 copy.png',
 '80px-USM_Yellow_6.png',
 '80px-USM_Yellow_7 copy.png',
+'80px-USM_Blue_1.png',
 '80px-USM_Yellow_7.png',
 '80px-USM_Yellow_8 copy.png',
 '80px-USM_Yellow_8.png',
@@ -400,12 +427,16 @@ function reset()
 '80px-USM_Yellow_9.png',
 '80px-USM_Yellow_Draw copy.png',
 '80px-USM_Yellow_Draw.png',
+'80px-USM_Yellow_Reverse copy.png',
+'80px-USM_Yellow_Reverse.png',
+'80px-USM_Yellow_Skip copy.png',
+'80px-USM_Yellow_Skip.png',
 'Red0 copy.png',
 'Red0.png',
 'Red1 copy.png',
 'Red1.png'
 ];
-
+    reverse = 'false';
     playedCards = [];
     winners = [];
     playerturnId = 1;
@@ -481,18 +512,33 @@ socket.on('shuffleCards',function(data){
         for(var i in SOCKET_LIST){
                 //console.log('sending players with cards');
                 //console.log(players);
-                SOCKET_LIST[i].emit('getcards',players,playedCards);
-                SOCKET_LIST[i].emit('played',players,playedCards,data,'noCard');
+                SOCKET_LIST[i].emit('getcards',players,playedCards,winners);
+                SOCKET_LIST[i].emit('played',players,playedCards,data,'noCard',winners);
+                SOCKET_LIST[i].emit('reversed',reverse);
             }
     });
 
  socket.on('play',function(playerName,cardPlayed){
     //console.log(playerName + ' Played ' + cardPlayed + 'card');
+    
+    if(cardPlayed.includes('Reverse'))
+        {
+            
+            if(reverse == 'false')
+            {
+                reverse ='true';
+            }
+            else
+            {
+                reverse ='false';
+            }
+        }
     play(players,playerName,cardPlayed);
     for(var i in SOCKET_LIST){
                 //console.log('playing the card');
                 //console.log(players);
                 SOCKET_LIST[i].emit('played',players,playedCards,playerName,cardPlayed, winners);
+                SOCKET_LIST[i].emit('reversed',reverse);
             }
 
     });

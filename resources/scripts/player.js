@@ -23,7 +23,7 @@
    chatContainer.style.visibility = "hidden" ;
 	 playerArea.style.visibility="hidden";
 
-   socket.on('getcards',function(data,playedCards){
+   socket.on('getcards',function(data,playedCards,winners){
    	document.onmousedown = startDrag;
         document.onmouseup = stopDrag;
 
@@ -43,7 +43,7 @@
    		{
    			document.getElementById('playerCard').innerHTML= "";
    		}
-   		displayPlayers(players,[]);
+   		displayPlayers(players,winners);
    		for(var i in players){
    			if (players[i].name == playerName.value)
    			{
@@ -274,6 +274,33 @@
 
     });
 
+    socket.on('reversed',function(reversed){
+    	try {
+				dealAudio.play();
+			}
+			catch(error) {
+				console.error(error);
+			}
+    	document.getElementById('reverseImage').innerHTML = "";
+    	if(reversed =='true')
+    	{
+    		var elem = document.createElement("img");
+						elem.setAttribute("src", "./images/upArrow.jpg");
+						elem.setAttribute("id","upArrow.jpg");
+						elem.setAttribute("class","reverseImg");
+			document.getElementById('reverseImage').appendChild(elem);
+    	}
+    	else
+    	{
+    		var elem = document.createElement("img");
+						elem.setAttribute("src", "./images/downArrow.jpg");
+						elem.setAttribute("id","downArrow.jpg");
+						elem.setAttribute("class","reverseImg");
+			document.getElementById('reverseImage').appendChild(elem);
+    	}
+
+    });
+
 	playerForm.onsubmit = function(e){
 		e.preventDefault();
 		if(playerName.value!=null && playerName.value!='')
@@ -284,6 +311,7 @@
 			alert('Please enter your name');
 				}
 	}
+
 
 
 	function displayPlayers(item, winners) {
@@ -305,11 +333,13 @@
 			    if(item[index].cardCount == 0 && start!=true)
 				{
 					someoneWon = true;
-					if(!winners.includes(item[index].name))
+					if(winners!=null)
 					{
+						if(!winners.includes(item[index].name))
+						{
 						winner = item[index].name ; 
+						}	
 					}
-					
 				}
 				playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
             }

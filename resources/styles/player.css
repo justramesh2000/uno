@@ -96,6 +96,8 @@ body{
     margin: 2% 2% 2% 2%;
     display:inline-block;
     position:relative;
+    float: right;
+    float: top;
 }
 .playerCardImage{
     width:auto;
@@ -112,6 +114,7 @@ body{
     position:relative;
     font-size: 100%;
     color:white;
+    float: right;
 }
 .buttonBar {
    margin-top: 1%;

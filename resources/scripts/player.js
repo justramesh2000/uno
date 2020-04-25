@@ -156,8 +156,8 @@
 							var node = document.createTextNode(lastPlayerName);
 							pElem.appendChild(node);
 							pElem.setAttribute("class","lastPlayed");
-							pElem.style.right = '9%';
-							pElem.style.top = '40%';
+							pElem.style.right = '-10%';
+							pElem.style.top = '63%';
 						}
 						
 						if(document.getElementById(tempId) == null)

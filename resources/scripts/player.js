@@ -162,11 +162,13 @@
 						
 						if(document.getElementById(tempId) == null)
 						{
-							document.getElementById('playedCard').appendChild(elem);
+							var playedCardDiv = document.getElementById("playedCard");
+    						playedCardDiv.scrollTop = playedCardDiv.scrollHeight;
+							playedCardDiv.appendChild(elem);
 
 							if(pElem!=null)
 							{
-								document.getElementById('playedCard').appendChild(pElem);	
+								playedCardDiv.appendChild(pElem);	
 							}
 							
 							

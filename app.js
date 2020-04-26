@@ -201,19 +201,23 @@ io.sockets.on('connection', function(socket)
   	players = players.filter(function (el) {
       return el != null;
 		});
-    //set first player to play
-    players[0].playerTurn = true;
-    playerturnId = 1 ;
-    // console.log(playerturnId + ": Player turn");
-    for (var i = 0; i < 7; i++)
+    //check this for error
+    if(players.length>0)
     {
-      for(var j=0; j < players.length ;j++)
+      //set first player to play
+      players[0].playerTurn = true;
+      playerturnId = 1 ;
+      // console.log(playerturnId + ": Player turn");
+      for (var i = 0; i < 7; i++)
       {
-        players[j].cards.push(cards.shift());
-        players[j].cardCount+=1;
+        for(var j=0; j < players.length ;j++)
+        {
+          players[j].cards.push(cards.shift());
+          players[j].cardCount+=1;
+        }
       }
+      //console.log("cards distributed");
     }
-    //console.log("cards distributed");
   }
 
   function giveFromDeck(cards, players, playerName)

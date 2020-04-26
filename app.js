@@ -287,7 +287,7 @@ io.sockets.on('connection', function(socket)
       var index = thisPlayer.cards.indexOf(cardplayed);
       if (index !== -1) thisPlayer.cards.splice(index, 1);
       playedCards.push(cardplayed);
-      if(playedCards.length > players.length)
+      if((playedCards.length>4)&&(playedCards.length > players.length))
       {
         cards.push(playedCards.shift());
       }

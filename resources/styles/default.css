@@ -4,6 +4,7 @@
     color:white;
     border-radius:4px;
 }
+
 .btn:hover{
     background:#2CC06B;
 }
@@ -14,10 +15,7 @@
     height:300px;
     display:inline-block;
     margin:3% auto;
-
 }
-
-
 
 .dealerArea {
 
@@ -33,7 +31,6 @@
     position:relative;
 }
 
-
 .ButtonBar {
 
    width:100%;
@@ -42,7 +39,6 @@
    bottom:2%;
    left:0;
    position:absolute;
-
 }
 
 .chatContainer{
@@ -78,6 +74,7 @@
     border-color:#f4f4f4;
     overflow-y:scroll;
 }
+
 .chatCell {
     background:white;
     width:100%;

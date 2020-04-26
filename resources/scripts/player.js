@@ -101,7 +101,7 @@ socket.on('played',function(players,playedCards,lastPlayerName, lastCardPlayed, 
 	});
 	document.getElementById('playedCard').innerHTML= "";
 	document.getElementById('playerCard').innerHTML= "";
-	displayPlayers(players, winners);
+	displayPlayers(players, winners, lastPlayerName);
 	//again set player card here
 	for(var i in players){
 		if (players[i].name == playerName.value)
@@ -296,7 +296,7 @@ playerForm.onsubmit = function(e)
 	}
 }
 
-function displayPlayers(item, winners)
+function displayPlayers(item, winners, lastPlayerName)
 {
 	//console.log("display players");
 	//console.log(item);
@@ -312,6 +312,8 @@ function displayPlayers(item, winners)
 			start = false;
 		}
 	}
+	var oListElem=document.createElement("ol");
+	oListElem.setAttribute("class","listPlayers")
 	for(var index in item){
 		if(item[index].cardCount == 0 && start!=true)
 		{
@@ -324,8 +326,21 @@ function displayPlayers(item, winners)
 				}
 			}
 		}
-		playerlist.innerHTML += item[index].id + ". " + item[index].name + "- " + item[index].cardCount +"<br>";
+		var listElem=document.createElement("li");
+		var node = document.createTextNode(item[index].name + "- " + item[index].cardCount);
+		listElem.appendChild(node);
+
+		if(!(lastPlayerName==null))
+		{
+			if(item[index].name == lastPlayerName)
+			{
+				listElem.setAttribute("class","listLastPlayer");
+			}
+		}
+
+		oListElem.appendChild(listElem);
   }
+	playerlist.appendChild(oListElem);
   if(someoneWon==true)
   {
   	if(winner!=null)

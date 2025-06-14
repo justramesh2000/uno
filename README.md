@@ -19,5 +19,5 @@ Features:
 4. Reset the game. This will take all cards from player and put it into card deck, player's list will be intact and game can be initiated with same players.
 5. Restart Game - This is to completely restart a new game, players will have to register again, this can be used if a player wants to be removed.
 
-wip - There are some ui works in progress. Divya Sharma is working on them.
+wip - There are some ui works in progress.
 
